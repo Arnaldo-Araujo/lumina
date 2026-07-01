@@ -1,0 +1,8 @@
+dev/langchain4j/quarkus/workshop/RagRetriever.class
+dev/langchain4j/quarkus/workshop/ImportmapResource.class
+dev/langchain4j/quarkus/workshop/agents/AccuserAgent.class
+dev/langchain4j/quarkus/workshop/agents/JudgeAgent.class
+dev/langchain4j/quarkus/workshop/RagIngestion.class
+dev/langchain4j/quarkus/workshop/agents/DefenseAgent.class
+dev/langchain4j/quarkus/workshop/LegalProcessWebSocket.class
+dev/langchain4j/quarkus/workshop/RagRetriever$1.class
