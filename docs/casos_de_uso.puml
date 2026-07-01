@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+actor "Usuário/Investigador" as user
+actor "AccuserAgent" as accuser
+actor "DefenseAgent" as defense
+actor "JudgeAgent" as judge
+
+package "Lumina - Tribunal Autônomo Multi-Agente" {
+  usecase "Iniciar Processo Administrativo" as UC1
+  usecase "Formular Acusação" as UC2
+  usecase "Elaborar Defesa" as UC3
+  usecase "Proferir Veredito" as UC4
+}
+
+user --> UC1
+UC1 ..> UC2 : Gatilho via WebSocket
+accuser --> UC2
+UC2 ..> UC3 : Gatilho Sequencial
+defense --> UC3
+UC3 ..> UC4 : Gatilho Final
+judge --> UC4
+@enduml

@@ -1,0 +1,38 @@
+@startuml workflow
+title Fluxo Multi-Agente: Processo Administrativo
+
+actor "Usuário/Fato" as user
+participant "LegalProcessWebSocket" as ws
+participant "AccuserAgent" as accuser
+participant "DefenseAgent" as defense
+participant "JudgeAgent" as judge
+
+user -> ws : Fornece fato inicial/prova
+activate ws
+
+ws -> accuser : accuse(fato)
+activate accuser
+note right of accuser: Analisa fato + Legislação (RAG) + Processo (RAG)\npara formular acusação formal.
+accuser --> ws : Texto da Acusação
+deactivate accuser
+
+ws -> user : Envia Acusação (Streaming)
+
+ws -> defense : defend(fato + acusação)
+activate defense
+note right of defense: Encontra brechas e excludentes\nbaseado na lei e no processo.
+defense --> ws : Texto da Defesa
+deactivate defense
+
+ws -> user : Envia Defesa (Streaming)
+
+ws -> judge : judge(fato + acusação + defesa)
+activate judge
+note right of judge: Avalia todo o debate\ne emite um veredito 100% isento.
+judge --> ws : Sentença/Veredito
+deactivate judge
+
+ws -> user : Envia Veredito Final (Streaming)
+ws --> user : Encerra Sessão
+deactivate ws
+@enduml

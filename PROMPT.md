@@ -64,3 +64,10 @@ Blindar a branch `main` contra alterações diretas. A regra impôs ao sistema d
 
 **Intenção:** 
 Garantir total rastreabilidade sobre a construção da aplicação. A criação deste documento (`PROMPT.md`) serve como um diário de bordo do par programação entre humano e IA, evidenciando as decisões tomadas e facilitando o entendimento de como o projeto evoluiu de um tutorial para a implementação atual.
+
+### 8. Tribunal Autônomo Multi-Agente
+**Prompt:**
+> `/goal a partir do INST_TRABALHO.md crie um arquivo de planejamento detalhado como alcançar os resultados esperados. O meu trabalho quero focar no seguinte, atualmente esse sistema é um aluguel de carros, preciso mudar o contexto desse projeto para o seguinte: O projeto vai ser uma aplicação que le arquivos ingeridos que é um processo administrativo completo, e também a legislacao que são referentes ao processo, com base nisso, o sistema vai assumir um papel por ver, um de acusação, como se fosse o causador da investigação, depois assume o papel de defesa, depois de um juiz 100% isento...`
+
+**Intenção:** 
+Descartar o domínio original do workshop (aluguel de carros) e substituí-lo por uma orquestração avançada (RAG + Agentic Workflow). A meta foi criar três agentes distintos (`AccuserAgent`, `DefenseAgent`, `JudgeAgent`) chamados de forma sequencial pelo `LegalProcessWebSocket` para debater um caso jurídico com base nos fatos e legislação gerados dinamicamente nos arquivos `.txt`. Adicionalmente, mapear a arquitetura visualmente através de diagramas gerados pelo script `gerar_diagramas.py` a partir da modelagem `.puml`.
