@@ -27,3 +27,4 @@ replay_pid*
 .agents
 antigravity.config.json
 .env
+target/
