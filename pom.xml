@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.langchain4j</groupId>
-    <artifactId>quarkus-workshop-langchain4j-06</artifactId>
+    <artifactId>lumina</artifactId>
     <version>1.0.0</version>
+    <name>Lumina</name>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
