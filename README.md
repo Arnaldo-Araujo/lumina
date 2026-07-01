@@ -194,6 +194,12 @@ O projeto utiliza 4 skills customizadas que guiam o desenvolvimento:
 
 ---
 
+## 📜 Histórico de Interações (Prompts)
+
+Toda a trilha de desenvolvimento deste repositório, realizada em co-criação com um agente autônomo de Inteligência Artificial, está rastreada de forma transparente. Você pode consultar todos os comandos solicitados e o motivo de cada decisão técnica acessando o nosso **[Histórico de Prompts (PROMPT.md)](PROMPT.md)**.
+
+---
+
 ## 📚 Referências
 
 - [Quarkus LangChain4j Workshop](https://quarkus.io/quarkus-workshop-langchain4j/)
