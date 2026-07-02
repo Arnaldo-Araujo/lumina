@@ -21,10 +21,10 @@ public class MultiAgentWebSocket {
     @OnOpen
     public String onOpen() {
         return "👋 Olá! Antes de tudo, quero agradeçer e me despedir temporariamente"
-        + "dos professores Fabio e Rodrigo e agradecer aos dois pelos ensinamentos" 
+        + " dos professores Fabio e Rodrigo e agradecer aos dois pelos ensinamentos" 
         + " passados, acredito que cresci bastante como aluno. Agora pode começar e"
-        + "perguntar sobre o processo já ingerido no sistema, 1 pdf, 1 docx e 1 txt," 
-        + "no menu a esquerda escolha o Agente que vai falar sobre o processo";
+        + " perguntar sobre o processo já ingerido no sistema, 1 pdf, 1 docx e 1 txt," 
+        + " no menu a esquerda escolha o Agente que vai falar sobre o processo";
     }
 
     @OnTextMessage
