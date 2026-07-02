@@ -70,10 +70,10 @@ O projeto é baseado no [Step 06 do Quarkus LangChain4j Workshop](https://quarku
 
 | # | Requisito | Status | Detalhes |
 |---|-----------|--------|----------|
-| 1 | **Contexto do RAG** — Alterar documentos e contexto do chat | 🔲 A fazer | Selecionar novos documentos para o RAG |
-| 2 | **Suporte Multiformato** — `.txt`, `.pdf`, `.docx` | 🔲 A fazer | Parsers Apache PDFBox e POI |
-| 3 | **System Message** — Adequar ao contexto escolhido | 🔲 A fazer | Modificar `@SystemMessage` |
-| 4 | **Logging de Chunks** — Persistir em banco com Panache | 🔲 A fazer | Entidade `ChunkLog`, Hibernate ORM |
+| 1 | **Contexto do RAG** — Alterar documentos e contexto do chat | ✅ Pronto | Lei de Licitações (14.133) Ingerida |
+| 2 | **Suporte Multiformato** — `.txt`, `.pdf`, `.docx` | ✅ Pronto | Parsers Apache PDFBox e POI integrados |
+| 3 | **System Message** — Adequar ao contexto escolhido | ✅ Pronto | Agentes Jurídicos (Acusação, Defesa, Juiz) via seletor UI |
+| 4 | **Logging de Chunks** — Persistir em banco com Panache | ✅ Pronto | Log integrado e mapeado |
 | 5 | **Chat via WebSocket** (base do workshop) | ✅ Pronto | Streaming com `Multi<String>` |
 
 ---

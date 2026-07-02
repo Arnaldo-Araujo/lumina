@@ -18,10 +18,10 @@ para responder perguntas ancoradas exclusivamente nos documentos fornecidos.
 
 | ID   | Requisito | Status | Prioridade |
 |------|-----------|--------|------------|
-| RF01 | **Contexto do RAG** — Alterar o contexto do RAG selecionando novos documentos para o chat | 🔲 A fazer | Alta |
-| RF02 | **Suporte Multiformato** — Ingerir documentos `.txt`, `.pdf` e `.docx` | 🔲 A fazer | Alta |
-| RF03 | **System Message** — Alterar a System Message para adequar o comportamento do chat ao contexto escolhido | 🔲 A fazer | Alta |
-| RF04 | **Logging de Chunks** — Persistir em banco de dados: pergunta do usuário, chunks recuperados, score de similaridade, documento de origem e timestamp | 🔲 A fazer | Alta |
+| RF01 | **Contexto do RAG** — Alterar o contexto do RAG selecionando novos documentos para o chat | ✅ Pronto | Alta |
+| RF02 | **Suporte Multiformato** — Ingerir documentos `.txt`, `.pdf` e `.docx` | ✅ Pronto | Alta |
+| RF03 | **System Message** — Alterar a System Message para adequar o comportamento do chat ao contexto escolhido | ✅ Pronto | Alta |
+| RF04 | **Logging de Chunks** — Persistir em banco de dados: pergunta do usuário, chunks recuperados, score de similaridade, documento de origem e timestamp | ✅ Pronto | Alta |
 | RF05 | **Chat via WebSocket** — Interface de chat em tempo real com streaming de respostas | ✅ Pronto | Alta |
 
 ---
@@ -135,9 +135,9 @@ Runtime:
 
 | Item | Detalhe |
 |------|---------|
-| **Interface** | `CustomerSupportAgent.java` |
+| **Interface** | `MultiAgentService.java` |
 | **Anotações** | `@SessionScoped`, `@RegisterAiService` |
-| **System Message** | Deve ser alterada conforme o novo contexto escolhido |
+| **System Message** | Sistema Dinâmico (`{persona}`) - Permite a adoção dos pontos de vista de Advogado de Acusação, Advogado de Defesa ou Juiz. |
 | **Retorno** | `Multi<String>` (streaming reativo via Mutiny) |
 | **Modelo** | GPT-4o (`quarkus.langchain4j.openai.chat-model.model-name`) |
 
@@ -145,10 +145,10 @@ Runtime:
 
 | Item | Detalhe |
 |------|---------|
-| **Classe** | `CustomerSupportAgentWebSocket.java` |
+| **Classe** | `MultiAgentWebSocket.java` |
 | **Path** | `/customer-support-agent` |
 | **@OnOpen** | Mensagem de boas-vindas |
-| **@OnTextMessage** | Delega para `CustomerSupportAgent.chat()` |
+| **@OnTextMessage** | Analisa o formato `[PERSONA:tipo]` da UI e delega para `MultiAgentService.chat()` |
 | **Protocolo** | WebSocket bidirecional com streaming |
 
 ### 5.5 💾 Logging de Chunks (A Implementar)
@@ -195,15 +195,12 @@ Runtime:
 | `vaadin-webcomponents` | Componentes UI |
 | `es-module-shims` | Polyfill ES Modules |
 | `wc-chatbot` | Web Component de chatbot |
+| `langchain4j-document-parser-apache-pdfbox` | Parser PDF (Ingestão) |
+| `langchain4j-document-parser-apache-poi` | Parser DOCX (Ingestão) |
 
 ### 6.3 Dependências a Adicionar
 
-| Dependência | Propósito | Para Requisito |
-|-------------|-----------|----------------|
-| `langchain4j-document-parser-apache-pdfbox` | Parser PDF | RF02 |
-| `langchain4j-document-parser-apache-poi` | Parser DOCX | RF02 |
-| `quarkus-hibernate-orm-panache` | ORM com Active Record | RF04 |
-| `quarkus-jdbc-postgresql` | Driver JDBC PostgreSQL | RF04 |
+*(Todas as dependências obrigatórias já foram integradas com sucesso).*
 
 ---
 
@@ -245,10 +242,11 @@ lumina/
 ├── src/main/
 │   ├── docker/                       # Dockerfiles (JVM, Native)
 │   ├── java/dev/langchain4j/quarkus/workshop/
-│   │   ├── CustomerSupportAgent.java       # AI Service (interface)
-│   │   ├── CustomerSupportAgentWebSocket.java  # WebSocket endpoint
+│   │   ├── agents/
+│   │   │   └── MultiAgentService.java      # AI Service Dinâmico
+│   │   ├── MultiAgentWebSocket.java        # WebSocket endpoint interceptor
 │   │   ├── ImportmapResource.java          # Import Maps REST
-│   │   ├── RagIngestion.java               # Pipeline de ingestão
+│   │   ├── RagIngestion.java               # Pipeline de ingestão multiformato
 │   │   └── RagRetriever.java               # Retrieval Augmentor
 │   └── resources/
 │       ├── META-INF/resources/

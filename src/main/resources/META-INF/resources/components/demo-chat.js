@@ -165,7 +165,9 @@ export class DemoChat extends LitElement {
                 // User message
                 const msg = that._stripHtml(e.detail.message.message);
                 if (socket && socket.readyState === WebSocket.OPEN) {
-                    socket.send(msg);
+                    const personaSelect = document.getElementById("persona-select");
+                    const persona = personaSelect ? personaSelect.value : "analista";
+                    socket.send("[PERSONA:" + persona + "] " + msg);
                     chatBot.sendMessage("", {
                         right: false,
                         loading: true

@@ -35,7 +35,25 @@ public class RagIngestion {
                        EmbeddingStore store, EmbeddingModel embeddingModel,
                        @ConfigProperty(name = "rag.location") Path documents) {
         store.removeAll(); // cleanup the store to start fresh (just for demo purposes)
-        List<Document> list = FileSystemDocumentLoader.loadDocumentsRecursively(documents);
+        
+        java.util.List<Document> list = new java.util.ArrayList<>();
+        
+        // TXT
+        list.addAll(FileSystemDocumentLoader.loadDocuments(
+            documents, java.nio.file.FileSystems.getDefault().getPathMatcher("glob:**.txt"), new dev.langchain4j.data.document.parser.TextDocumentParser()));
+            
+        // PDF
+        list.addAll(FileSystemDocumentLoader.loadDocuments(
+            documents, java.nio.file.FileSystems.getDefault().getPathMatcher("glob:**.pdf"), new dev.langchain4j.data.document.parser.apache.pdfbox.ApachePdfBoxDocumentParser()));
+            
+        // DOCX
+        list.addAll(FileSystemDocumentLoader.loadDocuments(
+            documents, java.nio.file.FileSystems.getDefault().getPathMatcher("glob:**.docx"), new dev.langchain4j.data.document.parser.apache.poi.ApachePoiDocumentParser()));
+        
+        // MD (já que existe lei14133.md)
+        list.addAll(FileSystemDocumentLoader.loadDocuments(
+            documents, java.nio.file.FileSystems.getDefault().getPathMatcher("glob:**.md"), new dev.langchain4j.data.document.parser.TextDocumentParser()));
+
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
                 .embeddingStore(store)
                 .embeddingModel(embeddingModel)
