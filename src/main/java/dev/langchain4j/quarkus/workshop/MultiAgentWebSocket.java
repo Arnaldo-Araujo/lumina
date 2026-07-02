@@ -20,7 +20,7 @@ public class MultiAgentWebSocket {
 
     @OnOpen
     public String onOpen() {
-        return "👋 Olá! Sou o Sistema Multi-Agente. Selecione um perfil acima e pergunte sobre o processo (Lei 14.133).";
+        return "👋 Olá! Antes de tudo, quero agradeçer e me despedir temporariamento do professor Rodrigo e Fabio e agradecer aos dois pelos ensinamentos passados, acredito que cresci bastante Agora pode testar fazendo perguntas sobre o processo anexado, nos 3 tipos de agentes selecionados ao lado. ";
     }
 
     @OnTextMessage
